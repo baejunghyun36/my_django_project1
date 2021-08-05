@@ -54,7 +54,7 @@ post_list.html
 <div class="container" style="height:50rem; ">
 
     <div style="text-align: center;">
-        <h1>실시간 게시글</h1>
+        <h1>실시간 게시글.</h1>
 
 
         {% for p in post_list %}
