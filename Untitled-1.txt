@@ -1,0 +1,77 @@
+em : 현재 스타일이 지정된 요소의 font-size기준
+
+rem : 최상위 요소의 font-size 기준 (html 태그 기준)
+
+google fonts
+
+python -m venv myvenv
+source myvenv/scripts/activate
+pip install django
+django-admin startproject myproject  
+cd firstproject
+python manage.py runserver 
+python manage.py startapp accountapp  # 앱 만들기 
+templates 만들기 앱 안에다가. 
+setting.py 앱 등록
+
+
+python manage.py makemigrations   // models.py에서의 수정 내용을 
+
+python manage.py createsuperuser // 계정 아이디 비번 
+
+
+git config --global user.name "깃허브 계정이름"
+git config --global user.email ""
+
+
+
+.gitignore
+
+git branch leaf 
+git status
+git checkout leaf
+git status
+
+
+git init
+git addgit commit -m "message"
+git remote add [remote 이름][repository 주소]
+git push [remote 이름][branch 이름]
+
+
+decorator 코드 관련 강의 28강 그리고 32강 끝부분
+33강 다시 듣기 
+32강 다시 듣기 
+사진 얿로드 안됨 
+
+
+
+post_list.html
+ <!-- {% extends 'base.html' %} 
+    {% block content %}
+
+
+<div class="container" style="height:50rem; ">
+
+    <div style="text-align: center;">
+        <h1>실시간 게시글</h1>
+
+
+        {% for p in post_list %}
+        <hr>
+
+
+        <h4>
+            <a href="{{p.get_absolute_url}}">{{p.title}}</a>
+        </h4>
+        <h4>{{p.created_at}}</h4>
+        <p>{{p.content}}</p>
+        {% endfor %}
+
+
+
+    </div>
+
+
+
+</div>

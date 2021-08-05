@@ -1,0 +1,134 @@
+ {% extends 'base.html' %} {% block content %}
+
+
+<div style="text-align:center; font-family: 'Do Hyeon', sans-serif;">
+    <h1 style="margin: 2.5rem;">실시간 게시글</h1>
+</div>
+
+
+
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-8 col-lg-9">
+
+
+            {% for p in post_list %}
+            <div class="card mb-4">
+
+                {% if p.head_image %}
+
+
+                <img class="card-img-top" src="{{p.head_image.url}}" alt="{{ p }} head image"> {% else %}
+                <img class="card-img-top" src="https://picsum.photos/seed/{{p.id}}/800/200" alt="randomimage"> {% endif %}
+                <div class="card-body">
+                    <h2>{{p.title}}</h2>
+
+                    <p class="card-text">{{p.content | truncatewords:45}}</p>
+
+                    <div style="text-align: center;">
+                        <a href="{{p.get_absolute_url}}" class="btn btn-outline-success my-2 my-sm-0" style="text-align: center;">더보기</a>
+                    </div>
+
+
+
+
+                </div>
+                <div class="card-footer text-muted">
+                    Posted on {{p.created_at}} by
+                    <a href="#">작성자명 쓸 위치</a>
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+
+
+
+
+        <div class="col-md-4 col-lg-3">
+            <div class="card my-4">
+                <div class="card-header">회원정보</div>
+
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="#!">마이페이지</a></li>
+                                <li><a href="#!">내가 쓴 글</a></li>
+                                <li><a href="#!">내가 쓴 댓글</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6">
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="#!">스크랩</a></li>
+                                <li><a href="#!">안녕</a></li>
+                                <li><a href="#!">Tutorials</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="card my-4">
+                    <div class="card-header">Categories</div>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                            <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    {% endblock %}
+
+
+
+    <!--     
+
+    <a href="./index.html">home</a>
+    <a href="./blog_list.html">blog</a>
+    <a href="./about_me.html">about me </a>
+
+    <h1>about me</h1>
+    <h2>서울 사람 이성용입니다</h2>
+
+    <p>웹사이트 만들기</p>
+    <a href="index.html">첫 화면</a>
+    <img src="./hi.jpg" alt="" height="400px"> -->
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</body>
+
+</html>
