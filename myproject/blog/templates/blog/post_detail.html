@@ -1,112 +1,140 @@
- {% extends 'base.html' %} {% block content %}
+ {% extends 'blog/base.html' %} {% block head_title %} {{post.title}} - Blog {% endblock%} {% block mainarea %}
+
+
 <div style="text-align: center;">
+    <div id="post-area">
+        <div class="container my-3">
+
+
+            <div class="row">
+                <div class="col-md-3 col-lg-9" id="post-area">
+                    <h2>{{post.title}}</h2>
+                    <h5 class="text-muted">{{post.hook_text}}</h5>
+                    <div class="card mb-4">
+                        {% if post.head_image %}
+                        <img class="img-fluid rounded" src="{{post.head_image.url}}" alt="{{ post.title }} head_image"> {% else %}
+
+                        <img class="img-fluid rounded" src="https://picsum.photos/seed/{{post.id}}/800/200" alt="random_image"> {% endif%}
+
+
+                        <div class="card-body">
 
 
 
+                            <p class="card-text">{{post.content}}</p>
+                            <div class="card-footer text-muted">
+                                Posted on {{post.created_at}}
 
 
-    <div class="container my-3">
-        <div class="row">
-            <div class="col-md-8 col-lg-9">
-
-                <h2>{{post.title}}</h2>
-                <div class="card-footer text-muted">
-                    Posted on {{post.created_at}}
+                            </div>
 
 
-                </div>
-
-                <div class="card mb-4">
-
-
-
-                    {% if post.head_image %}
-                    <img class="img-fluid rounded" src="{{post.head_image.url}}" alt="{{ post.title }} head_image"> {% else %}
-
-                    <img class="img-fluid rounded" src="https://picsum.photos/seed/{{post.id}}/800/200" alt="random_image"> {% endif%}
-
-
-                    <div class="card-body">
-
-
-
-                        <p class="card-text">{{post.content}}</p>
-
-                        {% if post.file_upload %}
-                        <a href="{{post.file_upload.url}}" class="btn btn-outline-dark" role="button" download>Download:
-
-                           
-
-                        </a> {% endif %}
-
-                    </div>
-
-
-
-                </div>
-
-
-            </div>
-
-
-
-
-
-
-
-            <div class="col-md-4 col-lg-3">
-                <div class="card my-4">
-                    <div class="card-header">게시글 찾기</div>
-                    <div class="card-body">
-                        <div class="input-group">
-                            <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                            <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-
+                            {% if post.file_upload %}
+                            <a href="{{post.file_upload.url}}" class="btn btn-outline-dark" role="button" download>Download:
+    
+                               
+    
+                            </a> {% endif %}
 
                         </div>
                     </div>
 
                 </div>
 
-                <div class="card my-4">
-                    <div class="card-header">Categories</div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">Web Design</a></li>
-                                    <li><a href="#!">HTML</a></li>
-                                    <li><a href="#!">Freebies</a></li>
-                                </ul>
+                <div class="col-md-4 col-lg-3">
+                    <div class="card my-4">
+                        <div class="card-header">게시글 찾기</div>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+
+
                             </div>
-                            <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">JavaScript</a></li>
-                                    <li><a href="#!">CSS</a></li>
-                                    <li><a href="#!">Tutorials</a></li>
-                                </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="card my-4">
+                        <div class="card-header">Categories</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href="#!">Web Design</a></li>
+                                        <li><a href="#!">HTML</a></li>
+                                        <li><a href="#!">Freebies</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href="#!">JavaScript</a></li>
+                                        <li><a href="#!">CSS</a></li>
+                                        <li><a href="#!">Tutorials</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
+
+
+                <div class="col-md-3 col-lg-9" id="comment-area">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <!-- Comment form-->
+                            <form class="mb-4"><textarea class="form-control" rows="3" placeholder="악성댓글 달지 말아주세요"></textarea></form>
+                            <!-- Comment with nested comments-->
+                            <div class="d-flex mb-4">
+                                <!-- Parent comment-->
+                                <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                <div class="ms-3">
+                                    <div class="fw-bold">Commenter Name</div>
+                                    좋은글이네요
+                                    <!-- Child comment 1-->
+                                    <div class="d-flex mt-4">
+                                        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                        <div class="ms-3">
+                                            <div class="fw-bold">Commenter Name</div>
+                                            멋있어요
+                                        </div>
+                                    </div>
+                                    <!-- Child comment 2-->
+                                    <div class="d-flex mt-4">
+                                        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                        <div class="ms-3">
+                                            <div class="fw-bold">Commenter Name</div>
+                                            와우
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Single comment-->
+                            <div class="d-flex">
+                                <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                <div class="ms-3">
+                                    <div class="fw-bold">Commenter Name</div>
+                                    혹시 티셔츠 어디껀가요?
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
             </div>
+            <section class="mb-3">
 
-
-
+            </section>
         </div>
-        <a href="/blog/" style="text-align: center ;">실시간 게시글</a>
-
-
-
-    </div>
 
 
 
 
-
-
-
-
-
-
-    {% endblock %}
+        <a href="/blog/" style="text-align: center ;">실시간 게시글</a> {% endblock %}
