@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic import CreateView
+
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
@@ -13,6 +16,21 @@ class PostList(ListView):
 
 class PostDetail(DetailView):
     model = Post
+
+
+class PostCreate(LoginRequiredMixin, CreateView):
+    model = Post
+    fields =['title', 'hook_text', 'content', 'head_image', 'file_upload']
+
+    def form_valid(self, form):
+        current_user = self.request.user
+        if current_user.is_authenticated:
+            form.instance.author = current_user
+            return super(PostCreate, self).form_valid(form)
+        else:
+            return redirect('/blog/')
+
+
 
 # Create your views here.
 # def index(request):
