@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap4',
+    'django_extensions',
+    'crispy_forms',
+    'markdownx',
+    
     'blog',
     'single_pages',
  
@@ -133,6 +137,7 @@ STATICFILES_DIRS = [
 
 MEDIA_URL='/media/'
 MEDIA_ROOT= os.path.join(BASE_DIR,'_media')
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 # Default primary key field type

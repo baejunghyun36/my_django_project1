@@ -82,4 +82,7 @@ post_list.html
 pip install django
 pip install django-bootstrap4
 
+pip install django_extensions
 pip install beautifulsoup4
+pip install django-crispy-forms
+
