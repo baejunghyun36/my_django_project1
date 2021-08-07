@@ -1,4 +1,4 @@
- {% extends 'blog/base.html' %} {% block head_title %} {{post.title}} - Blog {% endblock%} {% block mainarea %}
+ {% extends 'blog/base.html' %} {% load crispy_forms_tags %} {% block head_title %} {{post.title}} - Blog {% endblock%} {% block mainarea %}
 
 
 
@@ -44,8 +44,6 @@
 
             <div class="col-md-4 col-lg-3">
                 {% include 'blog/sidenav.html'%}
-
-
             </div>
 
 
@@ -53,17 +51,20 @@
             <div class="col-md-3 col-lg-9 " id="comment-area ">
                 <div class="card bg-light ">
                     <div class="card-body ">
-                        {% if post.comment_set.exists %} {% for comment in post.comment_set.iterator %}
-                        <div class="media mb-4 " id="comment-{{ comment.pk}} ">
-                            <img class="d-flex mr-3 rounded-circle " src="http://placehold.it/50x50 " alt="hi ">
+                        {% if user.is_authenticated %}
+                        <form id="comment-form" method="POST" action="{{post.get_absolute_url }} new_comment/">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{comment_form | crispy}}
 
-                            <div class="media-body ">
-                                <h5 class="mt-0 ">{{comment.author.username}}&nbsp;&nbsp;<small class="text-muted ">{{comment.created_at}}</small></h5>
-                                <p>{{comment.content | linebreaks }}</p>
                             </div>
-                        </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
 
-                        {% endfor %} {% endif %}
+                        </form>
+                        {% else %}
+                        <a role="button" class="btn btn-outline-dark btn-block btn-sm" gref="#" data-toggle="modal" data-target="#loginModal">Log in and leave a comment</a> {% endif %}
+
+
 
                     </div>
                 </div>
@@ -76,3 +77,19 @@
 
 
     {% endblock%}
+
+
+
+
+
+    <!-- {% if post.comment_set.exists %} {% for comment in post.comment_set.iterator %}
+    <div class="media mb-4 " id="comment-{{ comment.pk}} ">
+        <img class="d-flex mr-3 rounded-circle " src="http://placehold.it/50x50 " alt="hi ">
+
+        <div class="media-body ">
+            <h5 class="mt-0 ">{{comment.author.username}}&nbsp;&nbsp;<small class="text-muted ">{{comment.created_at}}</small></h5>
+            <p>{{comment.content | linebreaks }}</p>
+        </div>
+    </div>
+
+    {% endfor %} {% endif %} -->

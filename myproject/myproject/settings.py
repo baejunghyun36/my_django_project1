@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'markdownx',
 
     'django.contrib.sites',
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -143,6 +144,14 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
+
+
+
 MEDIA_URL='/media/'
 MEDIA_ROOT= os.path.join(BASE_DIR,'_media')
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -160,7 +169,7 @@ AUTHENTICATION_BACKENDS=(
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID=1
+SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION='none'
 LOGIN_REDIRECT_URL='/blog/'

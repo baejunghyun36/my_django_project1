@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect, render
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
@@ -6,6 +7,29 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import UpdateView
 from .models import Post
 from django.core.exceptions import PermissionDenied
+from .forms import CommentForm
+
+def new_comment(request,pk):
+    if request.user.is_authenticated:
+        post = get_object_or_404(Post, pk=pk)
+
+
+        if request.method =='POST':
+            comment_form = CommentForm(request.POST)
+            if comment_form.is_valid():
+                comment = comment_form.save(commit=False)
+                comment.post =post
+                comment.author =request.user
+                comment.save()
+                return redirect(comment.get_absolute_url())
+        else:
+            return redirect(post.get_absolute_url())
+    else:
+        raise PermissionDenied
+
+
+
+
 
 
 
@@ -29,6 +53,10 @@ class PostList(ListView):
 
 class PostDetail(DetailView):
     model = Post
+    def get_context_data(self, **kwargs):
+        context=super(PostDetail, self).get_context_data()
+        context['comment_form']=CommentForm
+        return context
 
 
 class PostCreate(LoginRequiredMixin, CreateView):
@@ -46,16 +74,12 @@ class PostCreate(LoginRequiredMixin, CreateView):
 
 
 
-
 # Create your views here.
 # def index(request):
 #     posts = Post.objects.all().order_by('-pk')
 
 
 #     return render(request, 'blog/index.html',{'posts':posts, })
-
-
-
 def single_post_page(request, pk):
     post = Post.objects.get(pk=pk)
     return render(
