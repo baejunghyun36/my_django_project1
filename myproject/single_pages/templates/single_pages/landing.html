@@ -1,13 +1,52 @@
-{% extends 'base.html' %}
+{% extends 'single_pages/base.html' %} {% load socialaccount %} {% block content1%}
+
+
+<div style="margin-top:40rem; margin-left:45rem;">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+
+                <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="{% provider_login_url 'google' %}" style="font-size: large;>
+                    <i class=" fab fa-google "></i>&nbsp&nbsp Log in with Google</a>
+                <a role="button " class="btn btn-outline-dark btn-block btn-sm " href="/accounts/login/ " style="font-size: large; ">
+                    <i class="far fa-envelope "></i>&nbsp&nbsp Log in with E-mail
+                </a>
+
+                <a role="button " class="btn btn-outline-dark btn-block btn-sm " href="/accounts/signup " style="font-size: large; ">
+                    <i class="far fa-envelope "></i>&nbsp&nbsp Sign Up with E-mail</a>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div style="text-align: center; margin-top:30rem ">
+
+
+    <a href="/blog/ ">최신게시글</a>
+    <a href="/about_me/ ">마이페이지</a>
+</div>
+
+{% endblock%}
 
 
 
-<hr> {% block content %}
-
-<div style="text-align: center;">
 
 
-
-    <a href="/blog/">최신게시글</a>
-    <a href="/about_me/">마이페이지</a>
-</div>{% endblock %}
+    <!-- <div class="navbar-nav ml-auth ">
+        {% if user.is_authenticated %}
+        <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle " href="# " id="navbarDropdownMenuLink " role="button " data-toggle="dropdown " aria-haspopup="true " aria-expanded="false ">{{user.username}}</a>
+            <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink ">
+                <a class="dropdown-item " href="/accounts/logout/ ">Log Out</a>
+            </div>
+        </li>
+        {% else %}
+        <li class="nav-item ">
+            <a class="nav-link " href="# " data-toggle="modal " data-target="#loginModal ">LogIn</a>
+        </li>
+        {% endif %}
+    </div> -->

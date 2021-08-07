@@ -85,4 +85,13 @@ pip install django-bootstrap4
 pip install django_extensions
 pip install beautifulsoup4
 pip install django-crispy-forms
+pip install django-markdownx
 
+
+pip install django-allauth   // 회원가입 로긍인
+
+
+
+클라이언트 
+972115725595-cn86phhf95pioou8e7rpinmod9dbkh2t.apps.googleusercontent.com
+njQtWbIK5mtkHK1cevJLEZvO

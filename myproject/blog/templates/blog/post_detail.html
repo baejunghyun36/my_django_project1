@@ -29,12 +29,11 @@
 
 
                             {% endif %} {% if post.file_upload %}
-                            <a href="{{post.file_upload.url}}" class="btn btn-outline-dark" role="button" download>Download:
-        
-                            </div>
-                           
-                               
-    
+                            <a href="{{post.file_upload.url}}" class="btn btn-outline-dark" role="button" download>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-box-arrow-in-down" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1h-2z"/>
+                                    <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                                </svg>
                             </a> {% endif %}
 
                         </div>
@@ -43,101 +42,37 @@
             </div>
 
 
-
             <div class="col-md-4 col-lg-3">
-                <div class="card my-4">
-                    <div class="card-header">게시글 찾기</div>
-                    <div class="card-body">
-                        <div class="input-group">
-                            <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                            <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+                {% include 'blog/sidenav.html'%}
 
 
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="card my-4">
-                    <div class="card-header">Categories</div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">Web Design</a></li>
-                                    <li><a href="#!">HTML</a></li>
-                                    <li><a href="#!">Freebies</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">JavaScript</a></li>
-                                    <li><a href="#!">CSS</a></li>
-                                    <li><a href="#!">Tutorials</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
 
 
+            <div class="col-md-3 col-lg-9 " id="comment-area ">
+                <div class="card bg-light ">
+                    <div class="card-body ">
+                        {% if post.comment_set.exists %} {% for comment in post.comment_set.iterator %}
+                        <div class="media mb-4 " id="comment-{{ comment.pk}} ">
+                            <img class="d-flex mr-3 rounded-circle " src="http://placehold.it/50x50 " alt="hi ">
 
-            <div class="col-md-3 col-lg-9" id="comment-area">
-                <div class="card bg-light">
-                    <div class="card-body">
-                        <!-- Comment form-->
-                        <form class="mb-4"><textarea class="form-control" rows="3" placeholder="악성댓글 달지 말아주세요"></textarea></form>
-                        <!-- Comment with nested comments-->
-                        <div class="d-flex mb-4">
-                            <!-- Parent comment-->
-                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                            <div class="ms-3">
-                                <div class="fw-bold">Commenter Name</div>
-                                좋은글이네요
-                                <!-- Child comment 1-->
-                                <div class="d-flex mt-4">
-                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                    <div class="ms-3">
-                                        <div class="fw-bold">Commenter Name</div>
-                                        멋있어요
-                                    </div>
-                                </div>
-                                <!-- Child comment 2-->
-                                <div class="d-flex mt-4">
-                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                    <div class="ms-3">
-                                        <div class="fw-bold">Commenter Name</div>
-                                        와우
-                                    </div>
-                                </div>
+                            <div class="media-body ">
+                                <h5 class="mt-0 ">{{comment.author.username}}&nbsp;&nbsp;<small class="text-muted ">{{comment.created_at}}</small></h5>
+                                <p>{{comment.content | linebreaks }}</p>
                             </div>
                         </div>
-                        <!-- Single comment-->
-                        <div class="d-flex">
-                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                            <div class="ms-3">
-                                <div class="fw-bold">Commenter Name</div>
-                                혹시 티셔츠 어디껀가요?
-                            </div>
-                        </div>
+
+                        {% endfor %} {% endif %}
+
                     </div>
                 </div>
-
-
-
-
 
             </div>
 
         </div>
-        <section class="mb-3">
 
-        </section>
     </div>
 
 
-
-
-    <a href="/blog/" style="text-align: center ;">실시간 게시글</a> {% endblock %}
+    {% endblock%}
