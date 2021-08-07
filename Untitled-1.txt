@@ -5,7 +5,7 @@ rem : 최상위 요소의 font-size 기준 (html 태그 기준)
 google fonts
 
 python -m venv myvenv
-source myvenv/scripts/activate
+source venv/scripts/activate
 pip install django
 django-admin startproject myproject  
 cd firstproject
@@ -75,3 +75,11 @@ post_list.html
 
 
 </div>
+
+
+
+
+pip install django
+pip install django-bootstrap4
+
+pip install beautifulsoup4

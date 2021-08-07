@@ -16,7 +16,5 @@ urlpatterns=[
 
     # path('<int:pk>/', views.single_post_page),
    
-    
-
 ]
 

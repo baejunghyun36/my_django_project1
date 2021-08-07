@@ -20,10 +20,10 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
-        return f'[{self.pk}]{self.title}'
+        return f'[{self.pk}]{self.title} :: {self.author}'
 
 
     def get_absolute_url(self):
