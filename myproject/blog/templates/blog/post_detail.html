@@ -73,15 +73,19 @@
                         {% if user.is_authenticated and comment.author == user %}
                         <div class="float-right">
                             <a role="button" class="btn btn-sm btn-info" id="comment-{{ comment.pk }}-update-btn" href="/blog/update_comment/{{ comment.pk }}/">
-                                    edit
+                                    수정
                                 </a>
-                            <a role="button" href="#" id="comment-{{ comment.pk }}-delete-modal-btn" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteCommentModal-{{ comment.pk }}">
+
+
+                            <a role="button" class="btn btn-sm btn-danger" href="/blog/delete_comment/{{comment.pk}}/">삭제</a>
+
+                            <!-- <a role="button" href="/blog/" id="comment-{{ comment.pk }}-delete-modal-btn" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteCommentModal-{{ comment.pk }}">
                                     delete
-                                </a>
+                                </a> -->
                         </div>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="deleteCommentModal-{{ comment.pk }}" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+                        <!-- <div class="modal fade" id="deleteCommentModal-{{ comment.pk }}" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -99,7 +103,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
+
 
                         {% endif %}
                         <h5 class="mt-0">
