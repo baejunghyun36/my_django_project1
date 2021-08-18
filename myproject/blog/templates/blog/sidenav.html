@@ -1,46 +1,29 @@
 <div class="card my-4">
 
-
-
-
-
-
-
-
-
-
     {% if user.is_authenticated %}
     <h4 style="font-family: 'Do Hyeon', sans-serif; text-align: center;">{{user.username}}님</h2>
         {% endif %}
 
         <div class="card-body ">
-            <div class="row ">
-                <div class="col-sm-6 ">
-                    <ul class="list-unstyled mb-0 ">
-                        <li><a href="/about_me/">마이페이지</a></li>
-                        <li><a href="#! ">내가 쓴 글</a></li>
-                        <li><a href="#! ">내가 쓴 댓글</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-6 ">
-                    <ul class="list-unstyled mb-0 ">
-                        <li><a href="#! ">스크랩</a></li>
-                        <li><a href="#! ">안녕</a></li>
-                        <li><a href="#! ">Tutorials</a></li>
+            <ul class="list-unstyled mb-0 ">
+                <div style="text-align:center">
 
-                    </ul>
+                    <div class="box" style="margin-left: auto; margin-right: auto; display: block; ">
+                        <a href="/about_me/">
+                            <img class="profile" src="{{ user.socialaccount_set.all.first.get_avatar_url }}">
+                        </a>
+                    </div>
+
                 </div>
-            </div>
+
+
+
+
+
+                <li style="text-align: center;"><a href="/about_me/">마이페이지</a></li>
+
+            </ul>
 
         </div>
 
-        <div class="card my-4 ">
-            <div class="card-header ">Categories</div>
-            <div class="card-body ">
-                <div class="input-group ">
-                    <input class="form-control " type="text " placeholder="Enter search term... " aria-label="Enter search term... " aria-describedby="button-search " />
-                    <button class="btn btn-primary " id="button-search " type="button ">Go!</button>
-                </div>
-            </div>
-        </div>
 </div>

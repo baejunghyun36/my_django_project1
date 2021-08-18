@@ -47,32 +47,32 @@
             </div>
         </div>
 
-        <!-- <div id="layer_fixed">
-        <table cellspacing="20" cellpadding="20" style="width:100%; height:100%;">
-            <tr>
-                <td style="vertical-align:middle; padding-left: 20px; padding-right: 20px;">
-                    고정된 레이어입니다.
-                </td>
-            </tr>
-        </table>
-    </div> -->
 
     </div>
 
 
-    {% endblock %}
+    {% if is_paginated %}
+    <div style="text-align: center;">
+        <ul class="pagination justify-content-center mb-4">
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{page_obj.next_page_number}}">&larr; Older</a>
+            </li>
+            {% endif %} {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{page_obj.previous_page_number}}">Newer &rarr;</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#">Newer &rarr;</a>
+            </li>
+            {% endif %}
 
 
 
-    <!--     
+        </ul>
 
-    <a href="./index.html ">home</a>
-    <a href="./blog_list.html ">blog</a>
-    <a href="./about_me.html ">about me </a>
 
-    <h1>about me</h1>
-    <h2>서울 사람 이성용입니다</h2>
+    </div>
 
-    <p>웹사이트 만들기</p>
-    <a href="index.html ">첫 화면</a>
-    <img src="./hi.jpg " alt=" " height="400px "> -->
+    {% endif %} {% endblock %}

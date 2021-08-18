@@ -8,7 +8,7 @@ from django.views.generic.edit import UpdateView
 from .models import Post
 from django.core.exceptions import PermissionDenied
 from .forms import CommentForm
-
+from .models import Comment
 def new_comment(request,pk):
     if request.user.is_authenticated:
         post = get_object_or_404(Post, pk=pk)
@@ -28,10 +28,25 @@ def new_comment(request,pk):
         raise PermissionDenied
 
 
+class CommentUpdate(LoginRequiredMixin, UpdateView):
+    model = Comment
+    form_class = CommentForm
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated and request.user == self.get_object().author:
+            return super(CommentUpdate, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
 
-
-
+def delete_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    post = comment.post
+    if request.user.is_authenticated and request.user == comment.author:
+        comment.delete()
+        return redirect(post.get_absolute_url())
+    else:
+        raise PermissionDenied
 
 class PostUpdate(LoginRequiredMixin, UpdateView):
     model = Post
@@ -50,6 +65,12 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
 class PostList(ListView):
     model =Post
     ordering = '-pk'
+    paginate_by=5
+
+
+
+
+
 
 class PostDetail(DetailView):
     model = Post

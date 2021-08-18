@@ -1,13 +1,13 @@
-{% extends 'single_pages/base.html' %} {% load socialaccount %} {% block content1%}
+{% extends 'single_pages/base.html' %} {% load socialaccount %}
+<!--  -->
+{% block content1%}
 
 
 
 
 
 
-<div class="container" style="margin-top: 45rem; margin-bottom: 80rem;">
-
-
+<div class="container" style="margin-top: 30rem; margin-bottom:35rem;">
 
 
     <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="{% provider_login_url 'google' %}" style="font-size: large;">
@@ -15,7 +15,6 @@
     <a role="button " class="btn btn-outline-dark btn-block btn-sm " href="/accounts/login/ " style="font-size: large; ">
         <i class="far fa-envelope "></i>&nbsp&nbsp Log in with E-mail
     </a>
-
     <a role="button " class="btn btn-outline-dark btn-block btn-sm " href="/accounts/signup " style="font-size: large; ">
         <i class="far fa-envelope "></i>&nbsp&nbsp Sign Up with E-mail</a>
 
